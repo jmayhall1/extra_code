@@ -58,26 +58,26 @@ prob_ticks = [0.02, 0.2, 0.4, 0.6, 0.8, 1.0]
 lat, lon, storm_id, x_unscaled, predict, date, time = None, None, None, None, None, None, None
 for i, ax in enumerate(axes.ravel()):
     if i == 0:
-        lon, lat, predict, x_unscaled, storm_id, date, time = (al032023_lons, al032023_lons, al032023_prob,
+        lon, lat, predict, x_unscaled, storm_id, date, time = (al032023_lons, al032023_lats, al032023_prob,
                                                                al032023_c13, 'AL032023', 'June 22nd, 2023,',
                                                                '12:00 UTC')
         print(np.nanmax(x_unscaled))
         print(np.nanmin(x_unscaled))
         ax.set_title(f'TC Bret ({storm_id})', fontsize=16)
     if i == 1:
-        lon, lat, predict, x_unscaled, storm_id, date, time = (al042023_lons, al042023_lons, al042023_prob,
+        lon, lat, predict, x_unscaled, storm_id, date, time = (al042023_lons, al042023_lats, al042023_prob,
                                                                al042023_c13, 'AL042023', 'June 22nd, 2023,',
                                                                '12:00 UTC')
         ax.set_title(f'TC Cindy ({storm_id})', fontsize=16)
     if i == 2:
-        lon, lat, predict, x_unscaled, storm_id, date, time = (al032023_lons, al032023_lons, al032023_prob,
+        lon, lat, predict, x_unscaled, storm_id, date, time = (al032023_lons, al032023_lats, al032023_prob,
                                                                al032023_c8, 'AL032023', 'June 22nd, 2023,',
                                                                '12:00 UTC')
         print(np.nanmax(x_unscaled))
         print(np.nanmin(x_unscaled))
         ax.set_title(f'TC Bret ({storm_id})', fontsize=16)
     if i == 3:
-        lon, lat, predict, x_unscaled, storm_id, date, time = (al042023_lons, al042023_lons, al042023_prob,
+        lon, lat, predict, x_unscaled, storm_id, date, time = (al042023_lons, al042023_lats, al042023_prob,
                                                                al042023_c8, 'AL042023', 'June 22nd, 2023,',
                                                                '12:00 UTC')
         ax.set_title(f'TC Cindy ({storm_id})', fontsize=16)
