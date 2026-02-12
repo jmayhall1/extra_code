@@ -7,7 +7,6 @@ import numpy as np
 import zstandard as zstd
 from matplotlib.cm import ScalarMappable
 from matplotlib.colors import Normalize
-from vtkmodules.util.colors import deep_pink
 
 AL202019_lats = np.load(f'C:/Users/jmayhall/PycharmProjects/PythonProject/'
                         f'AL202019_20191120_1200_latlon.npz')["lat"].astype(np.float32)
