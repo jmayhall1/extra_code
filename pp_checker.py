@@ -5,7 +5,7 @@ import difflib
 
 # Load tools
 tool = language_tool_python.LanguageTool('en-US')
-prs = Presentation("C:/Users/jmayhall/Downloads/AES 656 JC Report 1.pptx")
+prs = Presentation("C:/Users/jmayhall/Downloads/Module13-Agriculture-Urbanization-AES103-SP26.pptx")
 
 
 def correct_text(text):
