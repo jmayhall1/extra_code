@@ -250,7 +250,7 @@ if __name__ == "__main__":
 
     tool = language_tool_python.LanguageTool('en-US')
     tool.disable_spellchecking()
-    tex_path = 'C:/Users/jmayhall/Downloads/masters_paper/amspaperV6.1.tex'
+    tex_path = 'C:/Users/jmayhall/Downloads/masters_thesis/Chapters/ch3.tex'
     with open(tex_path, encoding="utf-8") as f:
         text = f.read()
 
