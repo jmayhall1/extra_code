@@ -5,7 +5,7 @@ import difflib
 
 # Load tools
 tool = language_tool_python.LanguageTool('en-US')
-doc = Document("C:/Users/jmayhall/Downloads/Module15-GuidedNotes-AES103-SP26.docx")
+doc = Document("C:/Users/jmayhall/Downloads/mayhall_jc_report_3.docx")
 
 
 def correct_text(text):
