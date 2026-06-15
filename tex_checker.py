@@ -1,65 +1,6 @@
 # coding=utf-8
 import re
-import pdfplumber
 import language_tool_python
-
-
-# ============================================================
-# TEXT NORMALIZATION
-# ============================================================
-
-def normalize_pdf_text(text: str) -> str:
-    text = text.replace("\xa0", " ")
-    text = re.sub(r"[\u2000-\u200A\u202F\u205F\u3000]", " ", text)
-    return text
-
-
-# ============================================================
-# BUILD GLOBAL TEXT + POSITION MAP + CHARACTER COORDINATES
-# ============================================================
-
-def extract_pdf_with_map(pdf_path):
-
-    full_text = []
-    position_map = []
-
-    with pdfplumber.open(pdf_path) as pdf:
-        for page_number, page in enumerate(pdf.pages, start=1):
-
-            page_height = page.height
-            chars = sorted(page.chars, key=lambda c: (c["top"], c["x0"]))
-
-            previous_char = None
-
-            for char in chars:
-
-                # Insert synthetic space if gap is large
-                if previous_char:
-                    same_line = abs(char["top"] - previous_char["top"]) < 2
-
-                    if same_line:
-                        gap = char["x0"] - previous_char["x1"]
-
-                        if gap > 1.5:  # spacing threshold (tune if needed)
-                            full_text.append(" ")
-                            position_map.append((page_number, previous_char, page_height))
-
-                    else:
-                        # New line detected
-                        full_text.append("\n")
-                        position_map.append((page_number, previous_char, page_height))
-
-                full_text.append(char["text"])
-                position_map.append((page_number, char, page_height))
-
-                previous_char = char
-
-            full_text.append("\n")
-            position_map.append((page_number, None, page_height))
-
-    full_text = normalize_pdf_text("".join(full_text))
-
-    return full_text, position_map
 
 
 # ============================================================
@@ -228,26 +169,6 @@ def check_document(full_text, position_map):
 # ============================================================
 
 if __name__ == "__main__":
-
-    # pdf_path = "C:/Users/jmayhall/Downloads/masters_thesis/main.pdf"
-    #
-    # print("Analyzing PDF...")
-    # full_text, position_map = extract_pdf_with_map(pdf_path)
-    #
-    # issues = check_document(full_text, position_map)
-    #
-    # if not issues:
-    #     print("No issues found.")
-    # else:
-    #     for issue in issues:
-    #         context = get_context(full_text, issue["index"])
-    #
-    #         print("=" * 80)
-    #         print(f"Page {issue['page']} ({issue['position']})")
-    #         print(f"Issue: {issue['type']}")
-    #         print(f"Matched: '{issue['snippet']}'")
-    #         print(f"Context: ...{context}...")
-
     tool = language_tool_python.LanguageTool('en-US')
     tool.disable_spellchecking()
     tex_path = 'C:/Users/jmayhall/Downloads/masters_paper/amspaperV6.1.tex'
