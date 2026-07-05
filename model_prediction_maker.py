@@ -9,26 +9,26 @@ from matplotlib.cm import ScalarMappable
 from matplotlib.colors import Normalize
 from vtkmodules.util.colors import deep_pink
 
-al032023_lats = np.load(f'C:/Users/jmayhall/PycharmProjects/PythonProject/'
+al032023_lats = np.load(f'C:/Users/jmayhall/PycharmProjects/PythonProject/model_prediction_files/'
                         f'AL032023_20230622_1200_latlon.npz')["lat"].astype(np.float32)
-al032023_lons = np.load(f'C:/Users/jmayhall/PycharmProjects/PythonProject/'
+al032023_lons = np.load(f'C:/Users/jmayhall/PycharmProjects/PythonProject/model_prediction_files/'
                         f'AL032023_20230622_1200_latlon.npz')["lon"].astype(np.float32)
-al032023_c13 = np.load(f'C:/Users/jmayhall/PycharmProjects/PythonProject/'
+al032023_c13 = np.load(f'C:/Users/jmayhall/PycharmProjects/PythonProject/model_prediction_files/'
                        f'AL032023_20230622_1200_C13_unscaled_cut.npz')["brightness"].astype(np.float32)
-al032023_c8 = np.load(f'C:/Users/jmayhall/PycharmProjects/PythonProject/'
+al032023_c8 = np.load(f'C:/Users/jmayhall/PycharmProjects/PythonProject/model_prediction_files/'
                       f'AL032023_20230622_1200_C08_unscaled_cut.npz')["brightness"].astype(np.float32)
 
-al042023_lats = np.load(f'C:/Users/jmayhall/PycharmProjects/PythonProject/'
+al042023_lats = np.load(f'C:/Users/jmayhall/PycharmProjects/PythonProject/model_prediction_files/'
                         f'AL042023_20230622_1200_latlon.npz')["lat"].astype(np.float32)
-al042023_lons = np.load(f'C:/Users/jmayhall/PycharmProjects/PythonProject/'
+al042023_lons = np.load(f'C:/Users/jmayhall/PycharmProjects/PythonProject/model_prediction_files/'
                         f'AL042023_20230622_1200_latlon.npz')["lon"].astype(np.float32)
-al042023_c13 = np.load(f'C:/Users/jmayhall/PycharmProjects/PythonProject/'
+al042023_c13 = np.load(f'C:/Users/jmayhall/PycharmProjects/PythonProject/model_prediction_files/'
                        f'AL042023_20230622_1200_C13_unscaled_cut.npz')["brightness"].astype(np.float32)
-al042023_c8 = np.load(f'C:/Users/jmayhall/PycharmProjects/PythonProject/'
+al042023_c8 = np.load(f'C:/Users/jmayhall/PycharmProjects/PythonProject/model_prediction_files/'
                       f'AL042023_20230622_1200_C08_unscaled_cut.npz')["brightness"].astype(np.float32)
 
 # ---- Read compressed file ----
-with open('C:/Users/jmayhall/PycharmProjects/PythonProject/AL032023_20230622_1200_probs.zst', 'rb') as f:
+with open('C:/Users/jmayhall/PycharmProjects/PythonProject/model_prediction_files/AL032023_20230622_1200_probs.zst', 'rb') as f:
     compressed = f.read()
 
 # ---- Decompress ----
@@ -40,7 +40,7 @@ buffer = io.BytesIO(raw_npz)
 with np.load(buffer) as data:
     al032023_prob = data['probability']
 
-with open('C:/Users/jmayhall/PycharmProjects/PythonProject/AL042023_20230622_1200_probs.zst', 'rb') as f:
+with open('C:/Users/jmayhall/PycharmProjects/PythonProject/model_prediction_files/AL042023_20230622_1200_probs.zst', 'rb') as f:
     compressed = f.read()
 
 # ---- Decompress ----
@@ -105,7 +105,7 @@ for i, ax in enumerate(axes.ravel()):
     if i == 1:
         cbar2 = fig.colorbar(prob_map, ax=ax, orientation="horizontal", ticks=prob_ticks)
         cbar2.ax.tick_params(labelsize=16)
-        cbar2.set_label('Probability of TCB', fontsize=16)
+        cbar2.set_label('Probability of CB', fontsize=16)
 
     if i == 2:
         cbar1 = fig.colorbar(grayscale_map, ax=ax, orientation="horizontal", ticks=[-70, -60, -50 ,-40, -30])
@@ -115,10 +115,10 @@ for i, ax in enumerate(axes.ravel()):
     if i == 3:
         cbar2 = fig.colorbar(prob_map, ax=ax, orientation="horizontal", ticks=prob_ticks)
         cbar2.ax.tick_params(labelsize=16)
-        cbar2.set_label('Probability of TCB', fontsize=16)
+        cbar2.set_label('Probability of CB', fontsize=16)
 
     # Figure title
-    fig.suptitle(f"Transverse Cirrus Bands Probabilities for {date} at {time}",
+    fig.suptitle(f"Cirrus Band Probabilities for {date} at {time}",
                  fontsize=20)
 
     # Save figure
